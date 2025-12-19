@@ -9,12 +9,12 @@ FROM base AS deps
 WORKDIR /app
 
 # Copier les fichiers de configuration
-COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml ./
+COPY package.json pnpm-workspace.yaml ./
 COPY apps/web/package.json ./apps/web/
 COPY turbo.json ./
 
 # Installer les dépendances
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 
 # Étape de build
 FROM base AS builder
@@ -36,7 +36,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-# Copier les fichiers nécessaires
+# Copier les fichiers nécessaires depuis le build standalone
 COPY --from=builder /app/apps/web/.next/standalone ./
 COPY --from=builder /app/apps/web/.next/static ./apps/web/.next/static
 COPY --from=builder /app/apps/web/public ./apps/web/public
