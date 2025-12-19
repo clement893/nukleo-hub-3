@@ -10,3 +10,6 @@ cmds = ["pnpm build"]
 [start]
 cmd = "cd apps/web && pnpm start"
 
+[variables]
+NODE_VERSION = "20"
+
