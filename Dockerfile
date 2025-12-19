@@ -1,4 +1,5 @@
 # Utiliser Node.js 20
+# Build timestamp: 2025-12-19
 FROM node:20-alpine AS base
 
 # Installer pnpm
