@@ -30,8 +30,10 @@ COPY . .
 
 # Build l'application depuis le répertoire web
 WORKDIR /app/apps/web
-# Désactiver télémétrie
+# Désactiver Turbopack pour le build de production (utilise Webpack)
+# et désactiver la télémétrie
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_BUILD_USE_TURBOPACK=0
 RUN pnpm build
 
 # Étape de production
