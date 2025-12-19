@@ -30,8 +30,9 @@ COPY . .
 
 # Build l'application depuis le répertoire web
 WORKDIR /app/apps/web
-# Désactiver Turbopack pour le build de production (utilise le bundler Webpack standard)
+# Désactiver Turbopack et télémétrie pour le build de production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_BUILD_USE_TURBOPACK=false
 RUN pnpm build
 
 # Étape de production
