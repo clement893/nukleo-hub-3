@@ -28,8 +28,9 @@ COPY --from=deps /app/apps/web/node_modules ./apps/web/node_modules
 # Copier le code source
 COPY . .
 
-# Build l'application
-RUN pnpm --filter web build
+# Build l'application depuis le répertoire web
+WORKDIR /app/apps/web
+RUN pnpm build
 
 # Étape de production
 FROM base AS runner
